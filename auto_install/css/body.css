@@ -1,0 +1,85 @@
+.formtitle {
+	font-size: 16px;
+	font-weight: bold;
+	color: #F00;
+	background-color: #FFF;
+	text-align: center;
+	display: block;
+	position: relative;
+	visibility: visible;
+}
+.input_line {
+	font-size: 12px;
+	font-weight: bolder;
+	text-align: left;
+	visibility: visible;
+	height:30px;
+	width: 600px;
+	clear:left;
+}
+
+.input_label {
+	font-size: 12px;
+	height: 20px;
+	width: 150px;
+	float:left;
+}
+
+.input_div_text {
+	font-size: 12px;
+	border-bottom: medium solid #CCC;
+	height: 20px;
+	width: 300px;
+	float:left;
+}
+
+.input_text {
+	font-size: 12px;
+	font-style: normal;
+	border-style: none;
+	width: 300px;
+}
+
+.input_comment {
+	font-size: 12px;
+	font-style: normal;
+	border-style: none;
+	color:#F00;
+	font-weight: bolder;
+	float:left;
+}
+
+.input_button_line {
+	font-size: 12px;
+	font-weight: bolder;
+	text-align: left;
+	visibility: visible;
+	height:30px;
+	width: 600px;
+}
+
+.input_button {
+	font-size: 18px;
+	font-style: normal;
+	border-style: none;
+	font-weight: bolder;
+	width: 300px;
+	float:left;
+}
+
+.input_div_area {
+	
+	font-size: 18px;
+	width: 600px;
+	text-align: left;
+	bottom:10px;
+	position:relative;
+	visibility: visible;
+}
+
+.input_commands {
+	font-size: 12px;
+	height: 100px;
+	width: 445px;
+	float:left;
+}

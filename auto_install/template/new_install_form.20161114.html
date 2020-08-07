@@ -1,0 +1,299 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link href="./css/body.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+</style>
+</head>
+
+<body onload="init_main();">
+<div align="center" id="newhostform" >
+<div class="formtitle">新机器安装操作系统</div>
+<br>
+<form name="new_install" id="new_install" method="post" action="./index.php" target="_self">
+<div class="input_line">
+  <div class="input_label">网卡MAC地址：</div>
+  <div class="input_div_text"><input type="text" class="input_text" id="hostmac" name="hostmac"></div>
+  <div class="input_comment">*新装机器必须输入MAC</div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">机器所在机房：</div>
+  <div class="input_div_text">
+  <select name="netname" id="netname" class="input_text" onchange="chg_ostype(this);">
+  
+ </select> 
+ </div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">操作系统类别：</div>
+  <div class="input_div_text">
+  <select name="ostype" id="ostype" class="input_text" onchange="chg_osver(this);">
+ 
+ </select> 
+ </div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">操作系统版本：</div>
+  <div class="input_div_text">
+  <select name="ostver" id="ostver" class="input_text"  onchange="chg_last(this);">
+ 
+ </select> 
+ </div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">主机名：</div>
+  <div class="input_div_text"><input type="text" class="input_text" id="hostname" name="hostname"></div>
+  <div class="input_comment">*主机名必须输入</div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">服务器类型：</div>
+  <div class="input_div_text">
+   <input type="radio" name="hosttype"   value="0" id="hosttype_0" checked>&nbsp;虚拟机 &nbsp; &nbsp;	
+    <input type="radio" name="hosttype"   value="1" id="hosttype_1" > &nbsp; 物理机 
+   </div>
+
+</div>
+
+<div class="input_line" id="nic1">
+  <div class="input_label">第一块网卡IP：</div>
+  <div class="input_div_text"><input type="text" class="input_text" id="net1ip" name="netip[]"></div>
+  <div class="input_comment"><a href="#" target="_self" onClick="Javascript:addnic();">新增网卡</a> &nbsp; &nbsp;  <a href="#" target="_self" onClick="Javascript:delnic();">删除网卡</a> </div>
+</div>
+
+<div class="input_line" id="mask1">
+  <div class="input_label">第一块网卡掩码：</div>
+  <div class="input_div_text"><input type="text" class="input_text" id="mask1ip" name="maskip[]"></div>
+</div>
+
+
+<div class="input_line">
+  <div class="input_label">DNS1：</div>
+  <div class="input_div_text"><input type="text" class="input_text" id="hostdns1" name="hostdns1"></div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">DNS2：</div>
+  <div class="input_div_text"><input type="text" class="input_text" id="hostdns2" name="hostdns2"></div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">网关：</div>
+  <div class="input_div_text"><input type="text" class="input_text" id="hostgw" name="hostgw"></div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">系统管理员密码：</div>
+  <div class="input_div_text"><input type="password" class="input_text" id="rootpasswd" name="rootpasswd"></div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">确认管理员密码：</div>
+  <div class="input_div_text"><input type="password" class="input_text" id="rerootpasswd" name="rerootpasswd"></div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">/boot分区大小：</div>
+  <div class="input_div_text"><input type="text" class="input_text" id="bootsize" name="bootsize"></div> <div class="input_comment">*单位MB</div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">交换分区大小：</div>
+  <div class="input_div_text"><input type="text" class="input_text" id="swapsize" name="swapsize"></div> <div class="input_comment">*0不配置交换分区</div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">根分区大小：</div>
+  <div class="input_div_text"><input type="text" class="input_text" id="rootsize" name="rootsize"></div> <div class="input_comment">*0剩下的空间</div>
+</div>
+
+<div class="input_line">
+  <div class="input_label">执行的命令：</div>
+  <div  id="commands" class="input_commands"></div> 
+</div>
+
+<div class="input_div_area">
+	<input type="hidden" class="input_button" id="action" name="action" value="newhostinstall">
+    <input type="reset" class="input_button" id="reset" name="seset" value="重填">
+	 <input type="submit" class="input_button" id="submit" name="submit" value="发送">
+</div>
+</form>
+</div>
+<script>
+<?php echo $JS_VAS; ?>
+<?php echo $DEFAULTDNS1; ?>
+<?php echo $DEFAULTDNS2; ?>
+<?php echo $DEFAULTGW; ?>
+<?php echo $DEFAULTPASSWD; ?>
+<?php echo $DEFAULTNET1; ?>
+<?php echo $DEFAULTMASK1; ?>
+<?php echo $DEFAULTNET2; ?>
+<?php echo $DEFAULTMASK2; ?>
+<?php echo $JS_ARRAY_VAS; ?>
+
+
+var pIndex = 0;
+var pOsIndex = 0;
+var nicNum = 1;
+var netnameEle = document.getElementById("netname");
+var ostypeEle = document.getElementById("ostype");
+var ostverEle = document.getElementById("ostver");
+var dns1Ele = document.getElementById("hostdns1");
+var dns2Ele = document.getElementById("hostdns2");
+var gwEle = document.getElementById("hostgw");
+var rootpasswdEle = document.getElementById("rootpasswd");
+var rerootpasswdEle = document.getElementById("rerootpasswd");
+var net1Ele = document.getElementById("net1ip");
+var mask1Ele = document.getElementById("mask1ip");
+var bootsizeEle = document.getElementById("bootsize");
+var swapsizeEle = document.getElementById("swapsize");
+var rootsizeEle = document.getElementById("rootsize");
+var commandsEle = document.getElementById("commands");
+
+var hzNum = ["零","一","二","三","四","五","六"];
+
+
+function addnic(){
+	if(nicNum < 4) {
+		var last_mask = document.getElementById('mask' + nicNum);
+		var added_str = "<div class='input_line' id='nic" + (nicNum+1) +"'>";
+		added_str = added_str + "<div class='input_label'>第" + hzNum[(nicNum+1)] + "块网卡IP：</div>";
+  		added_str =  added_str + "<div class='input_div_text'><input type='text' class='input_text' id='net" + (nicNum + 1) + "ip' name='netip[]'></div></div>";
+		added_str = added_str + "<div class='input_line' id='mask" + (nicNum+1) +"'>";
+  		added_str = added_str + "<div class='input_label'>第" + hzNum[(nicNum+1)] +"块网卡掩码：</div>";
+  		added_str = added_str + "<div class='input_div_text'><input type='text' class='input_text' id='mask" + (nicNum+1) + "ip' name='maskip[]'></div>";
+		added_str = added_str + "</div>";
+		last_mask.insertAdjacentHTML("afterEnd",added_str); 
+		nicNum = nicNum + 1; 
+		if(nicNum == 2){
+			var selectIndex = netnameEle.selectedIndex;
+			var net2Ele = document.getElementById("net2ip");
+			var mask2Ele = document.getElementById("mask2ip");
+			//if(typeof(defaultnet2[selectIndex]) != "undefined"){
+				 net2Ele.value = defaultnet2[selectIndex];
+			//}
+			//if(typeof(defaultmask2[selectIndex]) != "undefined"){
+				 mask2Ele.value = defaultmask2[selectIndex];
+			//}
+		}
+	}
+	else{
+		alert("您最多只能添加四块网卡!");
+	}
+	return(false);
+}
+
+function delnic(){
+	if(nicNum > 1) {
+		var formvar = document.getElementById("newhostform");
+		var nicvar = document.getElementById("nic" + nicNum);
+		var maskvar = document.getElementById("mask" + nicNum);
+		formvar.removeChild(nicvar);
+		formvar.removeChild(maskvar);
+		nicNum = nicNum - 1;
+	}
+	else{
+		alert("您至少要保留一块网卡!");
+	}
+}
+
+function init_main(){
+	for (var i = 0; i < js_main.length; i++) {
+		var op = new Option(js_main[i], js_main[i]);
+    	netnameEle.options.add(op);
+	}
+	for (var i = 0; i < js_sub[0].length; i++) {
+		var op = new Option(js_sub[0][i], js_sub[0][i]);
+    	ostypeEle.options.add(op);
+	}
+	for (var i = 0; i < js_third[0][0].length; i++) {
+		var op = new Option(js_third[0][0][i], js_third[0][0][i]);
+    	ostverEle.options.add(op);
+	}
+	dns1Ele.value=defaultdns1[0];
+	dns2Ele.value=defaultdns2[0];
+	gwEle.value=defaultgw[0];
+	rootpasswdEle.value=defaultpasswd[0];
+	rerootpasswdEle.value=defaultpasswd[0];
+	net1Ele.value=defaultnet1[0];
+	mask1Ele.value=defaultmask1[0];
+	bootsizeEle.value = bootsize[0][0][0];
+	swapsizeEle.value = swapsize[0][0][0];
+	rootsizeEle.value = rootsize[0][0][0]; 
+	commandsEle.innerHTML = commands [0][0][0];
+	
+	//gwEle.value=defaultgw[0];
+	//rootpasswdEle.value=defaultpasswd[0];
+}
+
+function chg_ostype(obj) {
+	if (obj.value == -1) {
+    	ostypeEle.options.length = 0;
+        ostverEle.options.length = 0;
+     }
+    // var val = obj.value;
+	var val = obj.selectedIndex;
+     pIndex = obj.selectedIndex;
+     var ostype = js_sub[val];
+     var osver = js_third[val][0];
+     ostypeEle.options.length = 0;
+     ostverEle.options.length = 0;
+     for (var i = 0; i < ostype.length; i++) {
+     	var op = new Option(ostype[i], ostype[i]);
+      	ostypeEle.options.add(op);
+     }
+     for (var i = 0; i < osver.length; i++) {
+     	var op = new Option(osver[i], osver[i]);
+        ostverEle.options.add(op);
+     }
+	dns1Ele.value=defaultdns1[val];
+	dns2Ele.value=defaultdns2[val];
+	gwEle.value=defaultgw[val];
+	rootpasswdEle.value=defaultpasswd[val];
+	rerootpasswdEle.value=defaultpasswd[val];
+	net1Ele.value=defaultnet1[val];
+	mask1Ele.value=defaultmask1[val];
+	if(nicNum > 1){
+		var net2Ele = document.getElementById("net2ip");
+		var mask2Ele = document.getElementById("mask2ip");
+		net2Ele.value=defaultnet2[val];
+		mask2Ele.value=defaultmask2[val];	
+	}
+	bootsizeEle.value = bootsize[val][0][0];
+	swapsizeEle.value = swapsize[val][0][0];
+	rootsizeEle.value = rootsize[val][0][0]; 
+	commandsEle.innerHTML = commands [val][0][0];
+}
+
+function chg_osver(obj) {
+	var val = obj.selectedIndex;
+	pOsIndex = val;
+    var osver = js_third[pIndex][val];
+    ostverEle.options.length = 0;
+    for (var i = 0; i < osver.length; i++) {
+    	var op = new Option(osver[i], osver[i]);
+        ostverEle.options.add(op);
+    }
+	bootsizeEle.value = bootsize[pIndex][val][0];
+	swapsizeEle.value = swapsize[pIndex][val][0];
+	rootsizeEle.value = rootsize[pIndex][val][0]; 
+	commandsEle.innerHTML = commands [pIndex][val][0];
+}
+
+function chg_last(obj) {
+	var val = obj.selectedIndex;
+	bootsizeEle.value = bootsize[pIndex][pOsIndex][val];
+	swapsizeEle.value = swapsize[pIndex][pOsIndex][val];
+	rootsizeEle.value = rootsize[pIndex][pOsIndex][val]; 
+	commandsEle.innerHTML = commands [pIndex][pOsIndex][val];
+}
+		 
+</script>   
+</body>
+</html>

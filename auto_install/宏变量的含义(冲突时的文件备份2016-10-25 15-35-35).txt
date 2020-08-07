@@ -1,0 +1,19 @@
+{DATATIME} 时间，格式20161021105123
+{OSIMGURL}	操作系统的安装镜像URL地址
+{INSTALLPASSWD} 安装时的初始系统管理员密码
+{DISKPARTS} 磁盘分区信息
+{OSVER}  操作系统的版本
+{INSTALLMAC} 安装系统的网卡的MAC地址
+{HOSTID} 主机在数据库中的ID号
+{HOSTNAME} 主机名
+{DNS1} 第一个DNS地址
+{DNS2} 第二个DNS地址
+{GATEWAY} 网关地址
+{IP1}  第一块网卡IP地址
+{MASK1}  第一块网卡掩码地址
+{EANBLED1}  第一块网卡是否启启用 0启用 1为禁用
+{INSTALL_SCRIPT} 安装期间执行脚本的临时文件绝对位置
+{SCRIPT_FILE_URL} 安装期间执行脚本的绝对URL
+{PRE_SCRIPT}  安装之前执行的命令和脚本列表
+{POST_SCRIPT}  安装后执行的命令和脚本列表
+{BINDGATEWAYNICNO}  网关所绑定网卡的序号

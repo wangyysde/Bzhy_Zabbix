@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteRule ^/(ks|canines)/(.*)$ /index.php$2 [R] 
+#rewritebase /auto_install/
+#RewriteRule ^/ks_(.*)\.html$ ./index.php [R]
+#rewriterule ^/ks/.+$ ./index.php [R=301]
+

@@ -1,0 +1,157 @@
+<html>
+
+<body>
+<script src="./jquery-3.3.1.min.js"></script>
+
+<script language="Javascript1.2">
+var subopts = new Array();
+subopts['main1'] = new Array();
+subopts['main1'][0] = "00000";
+subopts['main1'][1] = "11111";
+subopts['main1'][2] = "22222";
+
+subopts['main2'] = new Array();
+subopts['main2'][0] = "AAAAA";
+subopts['main2'][1] = "BBBBB";
+subopts['main2'][2] = "CCCCC";
+
+subopts['main3'] = new Array();
+subopts['main3'][0] = "aaaaaa";
+subopts['main3'][1] = "bbbbbb";
+subopts['main3'][2] = "cccccc";
+
+function chgSubSel(pVar,subVar,SubOpts,url,urlParas){
+    var pObj,subObj,selectedKey,Opts,i,akey,optValue;	
+    
+    pObj = null;
+    if(typeof(pVar) == 'object'){
+	pObj = pVar;
+    }
+    if(typeof(pVar) == 'string'){
+	pObj = document.getElementById(pVar);
+    }
+    if(pObj == null){
+	return false;
+    }
+		
+    if(typeof(subVar) == 'object'){
+	subObj = subVar;
+    }
+    if(typeof(subVar) == 'string'){
+        subObj = document.getElementById(subVar);
+    }
+    if(subObj == null){
+        return false;
+    }
+    
+    selectedKey = pObj.selectedIndex;	
+    if(selectedKey == null){
+	return false;
+    }		
+    
+    Opts = null;
+    if((SubOpts != null) && (typeof SubOpts == 'object') && ('splice' in SubOpts) && ('join' in SubOpts)){
+        i = 0;
+	for (akey in SubOpts){
+            if(i ==  selectedKey){
+		Opts = SubOpts[akey];
+            }
+            i++;
+	}
+    }
+
+    if(Opts == null){
+        if((url == null) || (typeof url != 'string')){
+            return false;
+	}
+	optValue = getSelValue(pObj,selectedKey);
+	if(optValue == null){
+            return false;
+	}
+	if(typeof urlParas == 'string'){
+            urlParas = urlParas + '&ParenKey=' + optValue;
+	}
+	if((urlParas != null) && (typeof urlParas == 'object') && ('splice' in urlParas) && ('join' in urlParas)){
+            urlParas['ParenKey'] = optValue;
+	}
+	if(urlParas == null){
+            urlParas = new Array();
+            urlParas['ParenKey'] = optValue;
+	}
+			
+	if((typeof urlParas != 'string') && urlParas['ParenKey'] == null){
+            return false;
+	}
+        $(subObj).load(url,urlParas,function(responseTxt,statusTxt,xhr){
+            if(statusTxt == "success")
+                return true;;
+            if(statusTxt == "error"){
+                alert("Maybe Network or server error,we can not got data");
+                return false;
+            }
+        });
+    }
+    else{
+	if(chgOptions(subObj,Opts) == false){
+            return false;
+	}
+	else{
+            return true;
+	}
+    }
+		
+}	
+
+function chgOptions(subSel,SubOpts){
+    if((SubOpts != null) && (typeof SubOpts == 'object') && ('splice' in SubOpts) && ('join' in SubOpts)){
+        subSel.options.length = 0;
+        for (key in SubOpts){
+            var op = new Option(SubOpts[key],key);
+            subSel.options.add(op);
+        }
+    }
+    else{
+    	return false;
+    }
+    
+   return true;
+}
+
+function getSelValue(obj,SelId){
+	var i,OptValue,OptKey,Options;
+	
+	OptValue = null;
+	Options = obj.options;
+	i = 0;
+	for (OptKey in Options){
+		if(i == SelId){
+			OptValue = OptKey;
+		}
+		i++;
+	}
+	
+	return OptValue;
+}
+
+</script>
+<div >
+    <div>sdjaskldfjasdlkfjasdlkfjasdlkfjasdflkasdjfalskd</div>
+    <div>
+<form name="testform" action="./" >
+	<select id="main" size=1 onchange='chgSubSel("main","submenu",null,"http://zabbixtest.xf9h.com.cn/test/select_test.php","a1=12&b1=aaa")'>
+	<option value="main1">main1</option>
+	<option value="main2">main2</option>
+	<option value="main3">main3</option>	
+	</select>	
+	
+	<select id="submenu" size=1>
+	<option value="submenu1">submenu1</option>
+	<option value="submenu2">submenu2</option>
+	<option value="submenu3">submenu3</option>	
+	</select>	
+	
+</form>
+    </div>
+</div>
+</body>
+</html>

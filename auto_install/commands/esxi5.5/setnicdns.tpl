@@ -1,0 +1,18 @@
+#!/bin/sh
+
+DNS1="{DNS1}"
+DNS2="{DNS2}"
+GATEWAY="{GATEWAY}"
+BINDGATEWAYNICNO="{BINDGATEWAYNICNO}"
+
+/bin/esxcli.py network ip route ipv4 add  -g {GATEWAY} -n default
+if [ "X${DNS1} !=  "X" ]
+then
+	/bin/esxcli.py network ip dns server add  -s {DNS1}
+fi 
+if [ "X${DNS2} !=  "X" ]
+then
+	/bin/esxcli.py network ip dns server add  -s {DNS2}
+fi 
+
+c

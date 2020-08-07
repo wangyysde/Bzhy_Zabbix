@@ -1,0 +1,129 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Zabbix 3.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-06 15:06+0800\n"
+"PO-Revision-Date: 2016-07-23 10:02+0300\n"
+"Last-Translator: Jan <jan.garaj@gmail.com>\n"
+"Language-Team: Zabbix translation team\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Pootle 2.5.1.3\n"
+"X-Poedit-Basepath: ../../\n"
+"X-POOTLE-MTIME: 1469260958.000000\n"
+
+#: resource/contact_maintence.php:141
+msgid "Add Contact"
+msgstr ""
+
+#: resource/contact_maintence.php:140
+msgid "Add contact error!"
+msgstr ""
+
+#: resource/contact_maintence.php:139
+msgid "Add contact successful!"
+msgstr ""
+
+#: resource/contact_maintence.php:288
+msgid "Company you input is invalid!"
+msgstr ""
+
+#: resource/contact_maintence.php:4
+msgid "Contact maintence"
+msgstr ""
+
+#: include/menu.inc.php:22
+msgid "Contacts"
+msgstr ""
+
+#: resource/contact_maintence.php:184 resource/contact_maintence.php:226
+msgid "Could not get contact infomation!"
+msgstr ""
+
+#: resource/contact_maintence.php:91
+msgid "Could not get contact!"
+msgstr ""
+
+#: resource/contact_maintence.php:285
+msgid "Duty you input is invalid!"
+msgstr ""
+
+#: include/menu.inc.php:26
+msgid "Files"
+msgstr ""
+
+#: resource/contact_maintence.php:29
+msgid "Have some objects related to the contact you disabling!"
+msgstr ""
+
+#: resource/contact_maintence.php:115
+msgid "Input Error"
+msgstr ""
+
+#: resource/contact_maintence.php:151
+msgid "Modify Contact"
+msgstr ""
+
+#: resource/contact_maintence.php:150
+msgid "Modify contact error!"
+msgstr ""
+
+#: resource/contact_maintence.php:149
+msgid "Modify contact successful!"
+msgstr ""
+
+#: resource/contact_maintence.php:282
+msgid "Name you input is invalid!"
+msgstr ""
+
+#: resource/contact_maintence.php:15 resource/contact_maintence.php:54
+#: resource/contact_maintence.php:82
+msgid "No contact has specified!"
+msgstr ""
+
+#: resource/contact_maintence.php:203 resource/contact_maintence.php:242
+msgid "Ocurred a error"
+msgstr ""
+
+#: resource/contact_maintence.php:175 resource/contact_maintence.php:212
+msgid "Parameters error!"
+msgstr ""
+
+#: include/menu.inc.php:16
+msgid "Resource Management"
+msgstr ""
+
+#: resource/contact_maintence.php:99
+msgid "The contact can not be deleted!"
+msgstr ""
+
+#: resource/contact_maintence.php:46
+msgid "The contact can not be disabled!"
+msgstr ""
+
+#: resource/contact_maintence.php:73
+msgid "The contact can not be enabled!"
+msgstr ""
+
+#: resource/contact_maintence.php:96
+msgid "The contact has be deleted!"
+msgstr ""
+
+#: resource/contact_maintence.php:43
+msgid "The contact has be disabled!"
+msgstr ""
+
+#: resource/contact_maintence.php:70
+msgid "The contact has be enabled!"
+msgstr ""
+
+#: resource/contact_maintence.php:25
+msgid "The contact you specified has not found!"
+msgstr ""
+
+#: resource/contact_maintence.php:291
+msgid "You should input Tel or MP or EMAIL!"
+msgstr ""

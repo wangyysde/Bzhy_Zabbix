@@ -1,0 +1,10 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix} Author: Wayne Wang
+${licensePrefix} Website: http://www.bzhy.com
+${licensePrefix} Email: net_use@bzhy.com
+${licensePrefix} Copyright 2010 - ${date?date?string("yyyy") } http://www.bzhy.com
+<#if licenseLast??>
+${licenseLast}
+</#if>

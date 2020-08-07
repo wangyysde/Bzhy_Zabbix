@@ -1,0 +1,9 @@
+0000000000000000000000000000000000000000 e06ffaa8b830dc4b7315c1742c5226e2f84ec4fa wayne wang <net_use@bzhy.com> 1546594853 +0800	commit (initial): 测试
+e06ffaa8b830dc4b7315c1742c5226e2f84ec4fa cac616eda9d33a5947dd1da777d079b00de03080 root <root@develop-6.253> 1546594916 +0800	commit: 20190104 for complete resource and system setting module
+cac616eda9d33a5947dd1da777d079b00de03080 79dc49442cd303c946089af2fe8aeb22c78d203b wayne wang <net_use@bzhy.com> 1546597434 +0800	commit: 20190104 for complete resource and system setting module
+79dc49442cd303c946089af2fe8aeb22c78d203b 79dc49442cd303c946089af2fe8aeb22c78d203b wayne wang <net_use@bzhy.com> 1546597581 +0800	checkout: moving from master to 20190104_for_modify_host
+79dc49442cd303c946089af2fe8aeb22c78d203b 7116aa76019b4f683160002a09a3e110ddd929ef wayne wang <net_use@bzhy.com> 1546941129 +0800	commit: 20190108修改主机添加功能
+7116aa76019b4f683160002a09a3e110ddd929ef 4971ca8589d0af35a6e4a7792954b144c3562dfe wayne wang <net_use@bzhy.com> 1547101758 +0800	commit: 20190110主机添加功能完成 
+4971ca8589d0af35a6e4a7792954b144c3562dfe 1b81220531ed08d31f964c666dce988040e974d7 wayne wang <net_use@bzhy.com> 1550560253 +0800	commit: 20190219主机添加功能完成
+1b81220531ed08d31f964c666dce988040e974d7 1b81220531ed08d31f964c666dce988040e974d7 wayne wang <net_use@bzhy.com> 1552012446 +0800	checkout: moving from 20190104_for_modify_host to 2019030网卡配置采用新的方式
+1b81220531ed08d31f964c666dce988040e974d7 b4be57488f9bbd8f4d11ca33a8f4c6dd2082ecde wayne wang <net_use@bzhy.com> 1552012727 +0800	commit: 20190308网卡退回到原来的配置方式 

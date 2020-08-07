@@ -1,0 +1,2 @@
+0000000000000000000000000000000000000000 1b81220531ed08d31f964c666dce988040e974d7 wayne wang <net_use@bzhy.com> 1552012445 +0800	branch: Created from branch refs/heads/20190104_for_modify_host
+1b81220531ed08d31f964c666dce988040e974d7 b4be57488f9bbd8f4d11ca33a8f4c6dd2082ecde wayne wang <net_use@bzhy.com> 1552012727 +0800	commit: 20190308网卡退回到原来的配置方式 

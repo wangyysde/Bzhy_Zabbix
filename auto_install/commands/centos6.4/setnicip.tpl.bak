@@ -1,0 +1,25 @@
+#!/bin/bash
+
+IP1="{IP1}"
+MASK1="{MASK1}"
+EANBLED1="{EANBLED1}"
+IP2="{IP2}"
+MASK2="{MASK2}"
+EANBLED2="{EANBLED2}"
+IP3="{IP3}"
+MASK3="{MASK3}"
+EANBLED3="{EANBLED3}"
+IP4="{IP4}"
+MASK4="{MASK4}"
+EANBLED4="{EANBLED4}"
+cd /etc/sysconfig/network-scripts/
+interfaces=$(ls ifcfg* | \
+            LANG=C sed -e "$__sed_discard_ignored_files" \
+                       -e '/\(ifcfg-lo$\|:\|ifcfg-.*-range\)/d' \
+                       -e '/ifcfg-[A-Za-z0-9#\._-]\+$/ { s/^ifcfg-//g;s/[0-9]/ &/}' | \
+            LANG=C sort -k 1,1 -k 2n | \
+            LANG=C sed 's/ //')
+
+for i in $interfaces
+do
+	 
